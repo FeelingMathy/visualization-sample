@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 #libraries
 import pandas as pd
 import numpy as np
@@ -25,14 +22,15 @@ plt.figure(figsize=(45, 25))
 mask = np.zeros_like(corrMatrix)
 mask[np.triu_indices_from(mask)] = True
 hmap = sn.heatmap(corrMatrix, cmap = 'Blues', mask = mask, square = True, vmin=-1, vmax=1, annot=True, annot_kws={"size":12})
+
 #fontsize can be adjusted to not be giant
 hmap.axes.set_title("Correlation between COVID19 outcomes by race and ethnicity", fontsize = 18)
+
 #labelsize can be adjusted to not be giant
 hmap.tick_params(labelsize = 10)
 
 #saves plot output, change'C:/Users/bague/Downloads/cases_correlation.png' to whatever your directory should be and the new filename
 plt.savefig('C:/Users/bague/Downloads/outcomes_correlation.png')
-
 
 #runs matrix using Pingouin library allowing for significance flagging
 dfOutput = df.rcorr(stars=True, method = 'spearman')
@@ -45,10 +43,5 @@ dfOutput = df.rcorr(stars=False, method = 'spearman')
 
 #saves significance pVal output to digital format, correlations on bottom half, significance at top using pingouin. change file directory/name to your choice
 dfOutput.to_csv('C:/Users/bague/Downloads/outcomes pVal.csv')
-
-
-# In[ ]:
-
-
 
 
